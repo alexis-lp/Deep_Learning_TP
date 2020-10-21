@@ -114,7 +114,8 @@ Then after having seen the influence of almost all-important parameters I tried 
 
 `self.pool = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)`   
 
-And I used convolutions that create more channels (up to 750 for my best performance). 
+And I used convolutions that create more channels (up to 750 for my best performance) to keep a result with a quite high size.  
+Indeed, I observed that having a neural network becoming deeper is better than having a wider one.  
 For every test I adapted the number of epochs in order to limit the overfitting phenomenon. 
 
 I had been progressing slowly from 72% of accuracy on the test images to 74% and finally I reached my best configuration that you can find on my notebook.   
@@ -128,11 +129,11 @@ I will sum up here the results:
 
 We could improve these performances with several points. 
 
-First modifying the first convolution layer to add even more channels for example, but I didn’t know if we had the right to do it.   
+First modifying the first convolution layer to add even more channels for example, but I didn’t know if we had the right to do so.     
 Then we could also use different pooling methods (Average pooling for example).   
 Finally, there are so many configurations to test that we could spend even more time to see  which one is better.  
 
 ## CONCLUSION 
 
-To sum up I would like to say that this lab work helped me a lot to better understand the role and the influence of every component/hyper-parameter of a convolutional neural network. I founded that there are different trade-offs to do. If you increase too much the number of epochs you will start overfit and so lose accuracy, so you must adapt it. Also, if you pool too much your data, they will get smaller and so you must add channels to compensate but if there are too many channels your computation time will too high. 
+To sum up I would like to say that this lab work helped me a lot to better understand the role and the influence of every component/hyper-parameter of a convolutional neural network. I founded that there are different trade-offs to do. If you increase too much the number of epochs you will start overfit and so lose accuracy, so you must adapt it. Also, if you pool too much your data, they will get smaller and so you must add channels to compensate but if there are too many channels your computation time will be too high. 
 And I also learned that in deep learning there are configurations that are known to work well but the best one always depends on the environment and on the objective of our network.
