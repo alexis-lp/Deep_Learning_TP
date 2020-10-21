@@ -81,7 +81,9 @@ So, we will keep n_epochs = 10 for most of the case but we will have to adapt it
 My first idea was to add some convolution layers. As I saw that adding one, two layers did not change a lot the result I added 3 layers to really see the difference. They were defined like this:
 
 self.conv2=nn.Conv2d(18,64,kernel_size=3,stride=1,padding=1)
+
 self.conv3=nn.Conv2d(64,128,kernel_size=3,stride=1,padding=1)
+
 self.conv4=nn.Conv2d(128,18,kernel_size=3,stride=1,padding=1)
 
 So, they don’t modify the size. In order to have a result that has not a too small size I kept the pooling defined like this :
@@ -91,7 +93,9 @@ At this moment I still didn’t realise that it was not a the best idea to chang
 I got these results
 
 Accuracy of the network on the 40000 train images: 82.20 %
+
 Accuracy of the network on the 10000 validation images: 73.26 %
+
 Accuracy of the network on the 10000 test images: 72.64 % 
 
 We can see that with 4 layers we increased a lot the performances.
@@ -100,8 +104,11 @@ But when I tried to add a 5th layer it was not so useful as I got an accuracy th
 Then I also tried to modify the size of the kernel from 3 to 1 but it was quite similar.
 
 Accuracy of the network on the 40000 train images: 82.84 %
+
 Accuracy of the network on the 10000 validation images: 72.06 %
+
 Accuracy of the network on the 10000 test images: 71.41 %
+
 Computation time: 231.6 and Validation loss of the last epoch : 0.84.
 
 So finally, I kept my 3*3 kernels as it is also often the popular choice.
@@ -130,14 +137,18 @@ For every test I adapted the number of epochs in order to limit the overfitting 
 I progressed slowly from 72% of accuracy on the test images to 74% and finally I reached my best configuration that you can find on my notebook. I will sum up here the results:
 
 Accuracy of the network on the 40000 train images: 91.00 %
+
 Accuracy of the network on the 10000 validation images: 76.37 %
+
 Accuracy of the network on the 10000 test images: 75.86% 
+
 Ending Validation loss = 0.77
+
 Computation time : 270.13s
 
-We could improve these performances with several things. First modifying the first convolution layer to add even more channels for example, but I didn’t know if we had the right to do it. Then we could also use different pooling methods (Average pooling for example). Finally, there are so many configurations to test that we could spend even more time to see if there which one are better.
+We could improve these performances with several things. First modifying the first convolution layer to add even more channels for example, but I didn’t know if we had the right to do it. Then we could also use different pooling methods (Average pooling for example). Finally, there are so many configurations to test that we could spend even more time to see  which one is better.
 
 # CONCLUSION 
 
-To sum up I would like to say that this lab work helped me a lot to better understand the role and the influence of every component/hyper-parameter of a convolutional neural network. I founded that there is different trade off to do. If you increase too much the number of epochs you will start overfit and so lose accuracy, so you must adapt it. Also, if you pool too much your data, they will get smaller and so you must add channels to compensate but if there are too many channels your computation time will too high. 
+To sum up I would like to say that this lab work helped me a lot to better understand the role and the influence of every component/hyper-parameter of a convolutional neural network. I founded that there are different trade-offs to do. If you increase too much the number of epochs you will start overfit and so lose accuracy, so you must adapt it. Also, if you pool too much your data, they will get smaller and so you must add channels to compensate but if there are too many channels your computation time will too high. 
 And I also learned that in deep learning there are configurations that are known to work well but the best one always depends on the environment and on the objective of our network.
