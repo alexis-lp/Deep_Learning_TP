@@ -142,7 +142,7 @@ Accuracy of the network on the 40000 train images: 91.00 %
 
 Accuracy of the network on the 10000 validation images: 76.37 %
 
-Accuracy of the network on the 10000 test images: 75.86% 
+Accuracy of the network on the 10000 test images: **75.86%** 
 
 Ending Validation loss = 0.77
 
