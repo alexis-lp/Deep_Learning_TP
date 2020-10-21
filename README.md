@@ -1,5 +1,5 @@
 # Deep_Learning_TP
-                  Just below is the report on my differeent experiments with the neural network. You can find other information on the notebook like picture of the losses.
+    Just below is the report on my different experiments with the neural network. You can find other information on the notebook like picture of the losses.
 # Lab 2 - Deep Learning with PyTorch: CIFAR10 object classification 
 
 The goal of this lab work is to design a convolutional neural network with the tool Pytorch. 
