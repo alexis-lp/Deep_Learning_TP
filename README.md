@@ -73,7 +73,8 @@ n_epochs = 10 => Computation Time 170.28s, Ending Validation Loss 1.08, 64.58 % 
 
 We can see that increasing the number of epochs increases the computation time. Indeed the number of epochs corresponds to the number of passage of the algorithm on all the training sample. Each passage is decomposed in iteration of size of 32 images (the size of the batch size).
 In term of accuracy, there is not an optimal value that can be extracted as for the two other parameters. Indeed, we can see that here the optimal value is around 7. However, this depends on the layer we have. It is the same for the other parameters, but it is even more true for the number of epochs. Indeed, there is a moment at which the validation loss curve start diverging. This is because our network overfit too much. It means that it is really accurate on the training set, but it has difficulties to generalize what it learned to unseen data.
-\newline So, we will keep n_epochs = 10 for most of the case but we will have to adapt it depending on the configuration.
+
+So, we will keep n_epochs = 10 for most of the case but we will have to adapt it depending on the configuration.
 
 
 # Modification of the structure of our layers:
