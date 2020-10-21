@@ -9,9 +9,11 @@ In order to optimize its performances we can play on different hyper parameters.
 Before trying to find the most performing solution I tried to find the influence of the different hyper parameters.
 
 First I kept the initial structure of the neural network with only one convolution layer defined like this
+
 self.conv1 = nn.Conv2d(3, 18, kernel_size=3, stride=1, padding=1)
 
 and one pooling layer defined like this
+
 self.pool = nn.MaxPool2d(kernel_size=3, stride=1, padding=1)
 
 At this moment I changed the size, the stride and the padding of the kernel of the pooling layer in order to have an output which stays at 18*32*32 but I will change it and come back to the initial definition when I will search for the most performing configuration.
@@ -85,7 +87,9 @@ self.conv3=nn.Conv2d(64,128,kernel_size=3,stride=1,padding=1)
 self.conv4=nn.Conv2d(128,18,kernel_size=3,stride=1,padding=1)
 
 So, they don’t modify the size. In order to have a result that has not a too small size I kept the pooling defined like this :
+
 self.pool = nn.MaxPool2d(kernel_size=3, stride=1, padding=1)
+
 At this moment I still didn’t realise that it was not a the best idea to change the pooling layer but we’ll come back on it after.
 
 I got these results
