@@ -18,9 +18,10 @@ At this moment I changed the size, the stride and the padding of the kernel of t
 
 So with this configuration I tried to modify successively the learning rate, the batch size and the number of epochs.
 
-# LEARNING RATE
+## LEARNING RATE
 
-In order to see the influence of the learning rate I kept constant values for the batch size and for the number of epochs. My configuration was batch_size = 32 and n_epochs =10.    
+In order to see the influence of the learning rate I kept constant values for the batch size and for the number of epochs.   
+My configuration was batch_size = 32 and n_epochs =10.      
 Then I varied the learning rate between 0.01 and 0.0001.   
 I got these results:
 
@@ -35,9 +36,9 @@ I got these results:
 We can see that reducing the learning rate increases the computation time. Indeed, the learning rate defines how big are the step in the optimization algorithm (descent of the gradient). Thus, if the step size is smaller it will take longer to converge or it will get stuck in an undesirable local minimum.  However, for a smaller learning rater, we also have a better accuracy. But there is a limit because we see that if the learning rate is under 0.0004 then the accuracy reduces. Thus we have an optimal point around 0.0004. We will take this value for the following tests.
 
 
-# BATCH SIZE :
+## BATCH SIZE :
 
-Now we keep the learning rate and the number of epochs constant and we modify the batch size.    
+Now we keep the learning rate and the number of epochs constant and we modify the batch size.      
 My configuration was n_epochs = 10 and learning_rate = 0.0004.  
 Then I varied the batch size between 8 and 40 and I got these results:
 
@@ -49,7 +50,7 @@ Then I varied the batch size between 8 and 40 and I got these results:
 
 We can see that the computation time reduces with the batch size. Indeed, the batch size is the size of the set from the training samples which are propagated through the network. If we allow only small batches then we must do more iterations, so it takes more time. For the performances we can see that an increasing batch size does not necessarily increase performances. There is an optimal value which is around 32 so I kept this initial value for the following.
 
-# NUMBER OF EPOCHS
+## NUMBER OF EPOCHS
 
 Finally, I studied the influence of the number of epochs with batch_size = 32 and learning_rate = 0.0004. 
 
@@ -64,7 +65,7 @@ In term of accuracy, there is not an optimal value that can be extracted as for 
 So, we will keep n_epochs = 10 for most of the case but we will have to adapt it depending on the configuration.
 
 
-# Modification of the structure of our layers:
+## Modification of the structure of our layers:
 
 My first idea was to add some convolution layers. As I saw that adding one, two layers did not change a lot the result I added 3 layers to really see the difference. They were defined like this:
 
@@ -96,7 +97,7 @@ Then I also tried to modify the size of the kernel from 3\*3 to 1\*1 but it was 
 
 So finally, I kept my 3\*3 kernels as it is also often the popular choice.
 
-# Size of trarining and validation set
+## Size of trarining and validation set
 
 Then I tried to see the influence of the size of training and validation samples. I used 3 different configurations and I compared my results:
 
@@ -107,7 +108,7 @@ Then I tried to see the influence of the size of training and validation samples
 
 We can see that reducing the size of the training set increases the ending validation loss. This is quite normal because our network trains less and so it will be harder for him to generalize to unknown data set. So our validation loss curve is more likely to diverge quickly. However for the performances we see that after 40000 (for the training set) there is not a huge difference so we will keep our initial 40000 training set / 10000 validation set configuration.
 
-# Finding the best configuration
+## Finding the best configuration
 
 Then after having seen the influence of almost all-important parameters I tried to find the most performing configuration. To do so I came back to a pooling layer that concentrate informations:
 
@@ -131,7 +132,7 @@ First modifying the first convolution layer to add even more channels for exampl
 Then we could also use different pooling methods (Average pooling for example).   
 Finally, there are so many configurations to test that we could spend even more time to see  which one is better.  
 
-# CONCLUSION 
+## CONCLUSION 
 
 To sum up I would like to say that this lab work helped me a lot to better understand the role and the influence of every component/hyper-parameter of a convolutional neural network. I founded that there are different trade-offs to do. If you increase too much the number of epochs you will start overfit and so lose accuracy, so you must adapt it. Also, if you pool too much your data, they will get smaller and so you must add channels to compensate but if there are too many channels your computation time will too high. 
 And I also learned that in deep learning there are configurations that are known to work well but the best one always depends on the environment and on the objective of our network.
