@@ -1,6 +1,6 @@
 # Deep_Learning_TP
                                                                         Image Mining
-#### Lab 2 - Deep Learning with PyTorch: CIFAR10 object classification ####
+# Lab 2 - Deep Learning with PyTorch: CIFAR10 object classification 
 
 Just below is the report on my differeent experiments with the neural network. You can find other information on the notebook like picture of the losses.
 
