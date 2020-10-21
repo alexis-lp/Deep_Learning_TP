@@ -122,7 +122,7 @@ I will sum up here the results:
 
 *Accuracy of the network on the 40000 train images: 91.00 %*  
 *Accuracy of the network on the 10000 validation images: 76.37 %*  
-*Accuracy of the network on the 10000 test images: __75.86%__ *  
+*Accuracy of the network on the 10000 test images:* __75.86%__   
 *Ending Validation loss = 0.77*  
 *Computation time : 270.13s*  
 
