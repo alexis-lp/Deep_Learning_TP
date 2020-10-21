@@ -24,20 +24,20 @@ So with this configuration I tried to modify successively the learning rate, the
 
 In order to see the influence of the learning rate I kept constant values for the batch size and for the number of epochs. My configuration was batch_size = 32 and n_epochs =10. Then I varied the learning rate between 0.01 and 0.0001. 
 I got these results:
-*_
-learning_rate = 0.1    => Computation Time 119,74s, Ending Validation Loss 2.3,  10%    Accuracy on test images
-*
-learning_rate = 0.001  => Computation Time 162,29s, Ending Validation Loss 1.09, 64,11% Accuracy on test images
-*
-learning_rate = 0.0008 => Computation Time 167.93s, Ending Validation Loss 1.07, 64,67% Accuracy on test images
-*
-learning_rate = 0.0005 => Computation Time 167.61s, Ending Validation Loss 1.03, 65.39% Accuracy on test images
-*
-learning_rate = 0.0004 => Computation Time 166.44s, Ending Validation Loss 1.00, 66.42% Accuracy on test images
-*
-learning_rate = 0.0003 => Computation Time 168.44s, Ending Validation Loss 1.06, 64.6 % Accuracy on test images
-*
-learning_rate = 0.0001 => Computation Time 168.10s, Ending Validation Loss 1.08, 62.52% Accuracy on test images
+
+*learning_rate = 0.1    => Computation Time 119,74s, Ending Validation Loss 2.3,  10%    Accuracy on test images*
+
+*learning_rate = 0.001  => Computation Time 162,29s, Ending Validation Loss 1.09, 64,11% Accuracy on test images*
+
+*learning_rate = 0.0008 => Computation Time 167.93s, Ending Validation Loss 1.07, 64,67% Accuracy on test images*
+
+*learning_rate = 0.0005 => Computation Time 167.61s, Ending Validation Loss 1.03, 65.39% Accuracy on test images*
+
+*learning_rate = 0.0004 => Computation Time 166.44s, Ending Validation Loss 1.00, 66.42% Accuracy on test images*
+
+*learning_rate = 0.0003 => Computation Time 168.44s, Ending Validation Loss 1.06, 64.6 % Accuracy on test images*
+
+*learning_rate = 0.0001 => Computation Time 168.10s, Ending Validation Loss 1.08, 62.52% Accuracy on test images*
 
 We can see that reducing the learning rate increases the computation time. Indeed, the learning rate defines how big are the step in the optimization algorithm (descent of the gradient). Thus, if the step size is smaller it will take longer to converge or it will get stuck in an undesirable local minimum.  However, for a smaller learning rater, we also have a better accuracy. But there is a limit because we see that if the learning rate is under 0.0004 then the accuracy reduces. Thus we have an optimal point around 0.0004. We will take this value for the following tests.
 
