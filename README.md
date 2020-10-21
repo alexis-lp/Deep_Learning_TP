@@ -1,8 +1,8 @@
 # Deep_Learning_TP
-                           Image Mining
+                                                                        Image Mining
 #### Lab 2 - Deep Learning with PyTorch: CIFAR10 object classification ####
 
-Just below is the report on my differeent experiments with the neural network.
+Just below is the report on my differeent experiments with the neural network. You can find other information on the notebook like picture of the losses.
 
 The goal of this lab work is to design a convolutional neural network with the tool Pytorch. 
 This network must perform an image classification between 10 classes.
@@ -46,9 +46,13 @@ We can see that reducing the learning rate increases the computation time. Indee
 Now we keep the learning rate and the number of epochs constant and we modify the batch size.  My configuration was n_epochs = 10 and learning_rate = 0.0004. Then I varied the batch size between 8 and 40 and I got these results:
 
 batch_size = 8   => Computation Time 352.84s, Ending Validation Loss 1.11, 64.71 % accuracy on test images 
+
 batch_size = 16  => Computation Time 226.59s, Ending Validation Loss 1.05, 64.41 % accuracy on test images
+
 batch_size = 25  => Computation Time 185.31s, Ending Validation Loss 1.03, 65.02 % accuracy on test images
+
 batch_size = 32  => Computation Time 166.44s, Ending Validation Loss 1.00, 66.42 % accuracy on test images
+
 batch_size = 40  => Computation Time 155.98s, Ending Validation Loss 1.05, 65.11 % accuracy on test images
 
 We can see that the computation time reduces with the batch size. Indeed, the batch size is the size of the set from the training samples which are propagated through the network. If we allow only small batches then we must do more iterations, so it takes more time. For the performances we can see that an increasing batch size does not necessarily increase performances. There is an optimal value which is around 32 so I kept this initial value for the following.
@@ -58,9 +62,13 @@ We can see that the computation time reduces with the batch size. Indeed, the ba
 Finally, I studied the influence of the number of epochs with batch_size = 32 and learning_rate = 0.0004. 
 
 n_epochs = 2  => Computation Time 50.81s,  Ending Validation Loss 1.11, 61.29 % accuracy on test images
+
 n_epochs = 4  => Computation Time 67,68s,  Ending Validation Loss 1.01, 65.07 % accuracy on test images
+
 n_epochs = 7  => Computation Time 118.76s, Ending Validation Loss 1.01, 65.23 % accuracy on test images
+
 n_epochs = 8  => Computation Time 136.33s, Ending Validation Loss 1.04, 63.37 % accuracy on test images
+
 n_epochs = 10 => Computation Time 170.28s, Ending Validation Loss 1.08, 64.58 % accuracy on test images
 
 We can see that increasing the number of epochs increases the computation time. Indeed the number of epochs corresponds to the number of passage of the algorithm on all the training sample. Each passage is decomposed in iteration of size of 32 images (the size of the batch size).
@@ -103,7 +111,9 @@ So finally, I kept my 3*3 kernels as it is also often the popular choice.
 Then I tried to see the influence of the size of training and validation samples. I used 3 different configurations and I compared my results:
 
 n_training_samples = 36000 ; n_val_samples = 10000 =>  Computation Time 203.68s, Ending Validation loss = 0.86, 71.20% accuracy on test images
+
 n_training_samples = 42000 ; n_val_samples = 8000  =>  Computation Time 218.15s, Ending Validation loss = 0.81, 72.11% accuracy on test images
+
 n_training_samples = 45000 ; n_val_samples = 5000  =>  Computation Time 221.49s, Ending Validation loss = 0.77, 72.29% accuracy on test images
 
 
@@ -125,7 +135,7 @@ Accuracy of the network on the 10000 test images: 75.86%
 Ending Validation loss = 0.77
 Computation time : 270.13s
 
-We could improve these performances with several things. First modifying the first convolution layer to add even more channels for example, but I didn’t know if we had the right to do it. Then we could also use different pooling methods (Average pooling for example). Finally, there are so many configurations to test that we could spend even more time to see if there whiich one are better.
+We could improve these performances with several things. First modifying the first convolution layer to add even more channels for example, but I didn’t know if we had the right to do it. Then we could also use different pooling methods (Average pooling for example). Finally, there are so many configurations to test that we could spend even more time to see if there which one are better.
 
 # CONCLUSION 
 
