@@ -16,7 +16,7 @@ and one pooling layer defined like this
 
 self.pool = nn.MaxPool2d(kernel_size=3, stride=1, padding=1)
 
-At this moment I changed the size, the stride and the padding of the kernel of the pooling layer in order to have an output which stays at 18**32**32 but I will change it and come back to the initial definition when I will search for the most performing configuration.
+At this moment I changed the size, the stride and the padding of the kernel of the pooling layer in order to have an output which stays at 18\*32\*32 but I will change it and come back to the initial definition when I will search for the most performing configuration.
 
 So with this configuration I tried to modify successively the learning rate, the batch size and the number of epochs.
 
