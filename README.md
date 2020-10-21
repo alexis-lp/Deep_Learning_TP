@@ -5,15 +5,13 @@
 The goal of this lab work is to design a convolutional neural network with the tool Pytorch. 
 This network must perform an image classification between 10 classes.
 
-In order to optimize its performances we can play on different hyper parameters. 
+In order to optimize its performances we can play on different hyper parameters.    
 Before trying to find the most performing solution I tried to find the influence of the different hyper parameters.
 
-First I kept the initial structure of the neural network with only one convolution layer defined like this
-
+First I kept the initial structure of the neural network with only one convolution layer defined like this  
 self.conv1 = nn.Conv2d(3, 18, kernel_size=3, stride=1, padding=1)
 
-and one pooling layer defined like this
-
+And one pooling layer defined like this  
 self.pool = nn.MaxPool2d(kernel_size=3, stride=1, padding=1)
 
 At this moment I changed the size, the stride and the padding of the kernel of the pooling layer in order to have an output which stays at 18\*32\*32 but I will change it and come back to the initial definition when I will search for the most performing configuration.
@@ -22,7 +20,8 @@ So with this configuration I tried to modify successively the learning rate, the
 
 # LEARNING RATE
 
-In order to see the influence of the learning rate I kept constant values for the batch size and for the number of epochs. My configuration was batch_size = 32 and n_epochs =10. Then I varied the learning rate between 0.01 and 0.0001. 
+In order to see the influence of the learning rate I kept constant values for the batch size and for the number of epochs. My configuration was batch_size = 32 and n_epochs =10.    
+Then I varied the learning rate between 0.01 and 0.0001.   
 I got these results:
 
 *learning_rate = 0.1    => Computation Time 119,74s, Ending Validation Loss 2.3,  10%    Accuracy on test images*  
@@ -38,17 +37,15 @@ We can see that reducing the learning rate increases the computation time. Indee
 
 # BATCH SIZE :
 
-Now we keep the learning rate and the number of epochs constant and we modify the batch size.  My configuration was n_epochs = 10 and learning_rate = 0.0004. Then I varied the batch size between 8 and 40 and I got these results:
+Now we keep the learning rate and the number of epochs constant and we modify the batch size.    
+My configuration was n_epochs = 10 and learning_rate = 0.0004.  
+Then I varied the batch size between 8 and 40 and I got these results:
 
-batch_size = 8   => Computation Time 352.84s, Ending Validation Loss 1.11, 64.71 % accuracy on test images 
-
-batch_size = 16  => Computation Time 226.59s, Ending Validation Loss 1.05, 64.41 % accuracy on test images
-
-batch_size = 25  => Computation Time 185.31s, Ending Validation Loss 1.03, 65.02 % accuracy on test images
-
-batch_size = 32  => Computation Time 166.44s, Ending Validation Loss 1.00, 66.42 % accuracy on test images
-
-batch_size = 40  => Computation Time 155.98s, Ending Validation Loss 1.05, 65.11 % accuracy on test images
+*batch_size = 8   => Computation Time 352.84s, Ending Validation Loss 1.11, 64.71 % accuracy on test images*   
+*batch_size = 16  => Computation Time 226.59s, Ending Validation Loss 1.05, 64.41 % accuracy on test images*  
+*batch_size = 25  => Computation Time 185.31s, Ending Validation Loss 1.03, 65.02 % accuracy on test images*  
+*batch_size = 32  => Computation Time 166.44s, Ending Validation Loss 1.00, 66.42 % accuracy on test images*  
+*batch_size = 40  => Computation Time 155.98s, Ending Validation Loss 1.05, 65.11 % accuracy on test images*  
 
 We can see that the computation time reduces with the batch size. Indeed, the batch size is the size of the set from the training samples which are propagated through the network. If we allow only small batches then we must do more iterations, so it takes more time. For the performances we can see that an increasing batch size does not necessarily increase performances. There is an optimal value which is around 32 so I kept this initial value for the following.
 
@@ -56,19 +53,14 @@ We can see that the computation time reduces with the batch size. Indeed, the ba
 
 Finally, I studied the influence of the number of epochs with batch_size = 32 and learning_rate = 0.0004. 
 
-n_epochs = 2  => Computation Time 50.81s,  Ending Validation Loss 1.11, 61.29 % accuracy on test images
+*n_epochs = 2  => Computation Time 50.81s,  Ending Validation Loss 1.11, 61.29 % accuracy on test images*  
+*n_epochs = 4  => Computation Time 67,68s,  Ending Validation Loss 1.01, 65.07 % accuracy on test images*  
+*n_epochs = 7  => Computation Time 118.76s, Ending Validation Loss 1.01, 65.23 % accuracy on test images*  
+*n_epochs = 8  => Computation Time 136.33s, Ending Validation Loss 1.04, 63.37 % accuracy on test images*  
+*n_epochs = 10 => Computation Time 170.28s, Ending Validation Loss 1.08, 64.58 % accuracy on test images*  
 
-n_epochs = 4  => Computation Time 67,68s,  Ending Validation Loss 1.01, 65.07 % accuracy on test images
-
-n_epochs = 7  => Computation Time 118.76s, Ending Validation Loss 1.01, 65.23 % accuracy on test images
-
-n_epochs = 8  => Computation Time 136.33s, Ending Validation Loss 1.04, 63.37 % accuracy on test images
-
-n_epochs = 10 => Computation Time 170.28s, Ending Validation Loss 1.08, 64.58 % accuracy on test images
-
-We can see that increasing the number of epochs increases the computation time. Indeed the number of epochs corresponds to the number of passage of the algorithm on all the training sample. Each passage is decomposed in iteration of size of 32 images (the size of the batch size).
-In term of accuracy, there is not an optimal value that can be extracted as for the two other parameters. Indeed, we can see that here the optimal value is around 7. However, this depends on the layer we have. It is the same for the other parameters, but it is even more true for the number of epochs. Indeed, there is a moment at which the validation loss curve start diverging. This is because our network overfit too much. It means that it is really accurate on the training set, but it has difficulties to generalize what it learned to unseen data.
-
+We can see that increasing the number of epochs increases the computation time. Indeed the number of epochs corresponds to the number of passage of the algorithm on all the training sample. Each passage is decomposed in iteration of size of 32 images (the size of the batch size).  
+In term of accuracy, there is not an optimal value that can be extracted as for the two other parameters. Indeed, we can see that here the optimal value is around 7. However, this depends on the layer we have. It is the same for the other parameters, but it is even more true for the number of epochs. Indeed, there is a moment at which the validation loss curve start diverging. This is because our network overfit too much. It means that it is really accurate on the training set, but it has difficulties to generalize what it learned to unseen data.  
 So, we will keep n_epochs = 10 for most of the case but we will have to adapt it depending on the configuration.
 
 
@@ -76,11 +68,9 @@ So, we will keep n_epochs = 10 for most of the case but we will have to adapt it
 
 My first idea was to add some convolution layers. As I saw that adding one, two layers did not change a lot the result I added 3 layers to really see the difference. They were defined like this:
 
-self.conv2=nn.Conv2d(18,64,kernel_size=3,stride=1,padding=1)
-
-self.conv3=nn.Conv2d(64,128,kernel_size=3,stride=1,padding=1)
-
-self.conv4=nn.Conv2d(128,18,kernel_size=3,stride=1,padding=1)
+`self.conv2=nn.Conv2d(18,64,kernel_size=3,stride=1,padding=1)`    
+`self.conv3=nn.Conv2d(64,128,kernel_size=3,stride=1,padding=1)`   
+`self.conv4=nn.Conv2d(128,18,kernel_size=3,stride=1,padding=1)`   
 
 So, they don’t modify the size. In order to have a result that has not a too small size I kept the pooling defined like this :
 
