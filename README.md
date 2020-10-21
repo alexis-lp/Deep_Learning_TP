@@ -9,10 +9,10 @@ In order to optimize its performances we can play on different hyper parameters.
 Before trying to find the most performing solution I tried to find the influence of the different hyper parameters.
 
 First I kept the initial structure of the neural network with only one convolution layer defined like this  
-self.conv1 = nn.Conv2d(3, 18, kernel_size=3, stride=1, padding=1)
+`self.conv1 = nn.Conv2d(3, 18, kernel_size=3, stride=1, padding=1)`
 
 And one pooling layer defined like this  
-self.pool = nn.MaxPool2d(kernel_size=3, stride=1, padding=1)
+`self.pool = nn.MaxPool2d(kernel_size=3, stride=1, padding=1)`
 
 At this moment I changed the size, the stride and the padding of the kernel of the pooling layer in order to have an output which stays at 18\*32\*32 but I will change it and come back to the initial definition when I will search for the most performing configuration.
 
@@ -74,42 +74,35 @@ My first idea was to add some convolution layers. As I saw that adding one, two 
 
 So, they don’t modify the size. In order to have a result that has not a too small size I kept the pooling defined like this :
 
-self.pool = nn.MaxPool2d(kernel_size=3, stride=1, padding=1)
+`self.pool = nn.MaxPool2d(kernel_size=3, stride=1, padding=1)`
 
 At this moment I still didn’t realise that it was not a the best idea to change the pooling layer but we’ll come back on it after.
 
 I got these results
 
-Accuracy of the network on the 40000 train images: 82.20 %
+*Accuracy of the network on the 40000 train images: 82.20 %*   
+*Accuracy of the network on the 10000 validation images: 73.26 %*  
+*Accuracy of the network on the 10000 test images: 72.64 %*  
 
-Accuracy of the network on the 10000 validation images: 73.26 %
-
-Accuracy of the network on the 10000 test images: 72.64 % 
-
-We can see that with 4 layers we increased a lot the performances.
+We can see that with 4 layers we increased a lot the performances.  
 But when I tried to add a 5th layer it was not so useful as I got an accuracy that has fallen to 68.48% on test images.
 
-Then I also tried to modify the size of the kernel from 3 to 1 but it was quite similar.
+Then I also tried to modify the size of the kernel from 3\*3 to 1\*1 but it was quite similar.
 
-Accuracy of the network on the 40000 train images: 82.84 %
+*Accuracy of the network on the 40000 train images: 82.84 %*  
+*Accuracy of the network on the 10000 validation images: 72.06 %*  
+*Accuracy of the network on the 10000 test images: 71.41 %*  
+*Computation time: 231.6 and Validation loss of the last epoch : 0.84.*  
 
-Accuracy of the network on the 10000 validation images: 72.06 %
-
-Accuracy of the network on the 10000 test images: 71.41 %
-
-Computation time: 231.6 and Validation loss of the last epoch : 0.84.
-
-So finally, I kept my 3*3 kernels as it is also often the popular choice.
+So finally, I kept my 3\*3 kernels as it is also often the popular choice.
 
 # Size of trarining and validation set
 
 Then I tried to see the influence of the size of training and validation samples. I used 3 different configurations and I compared my results:
 
-n_training_samples = 36000 ; n_val_samples = 10000 =>  Computation Time 203.68s, Ending Validation loss = 0.86, 71.20% accuracy on test images
-
-n_training_samples = 42000 ; n_val_samples = 8000  =>  Computation Time 218.15s, Ending Validation loss = 0.81, 72.11% accuracy on test images
-
-n_training_samples = 45000 ; n_val_samples = 5000  =>  Computation Time 221.49s, Ending Validation loss = 0.77, 72.29% accuracy on test images
+*n_training_samples = 36000 ; n_val_samples = 10000 =>  Computation Time 203.68s, Ending Validation loss = 0.86, 71.20% accuracy on test images*  
+*n_training_samples = 42000 ; n_val_samples = 8000  =>  Computation Time 218.15s, Ending Validation loss = 0.81, 72.11% accuracy on test images*  
+*n_training_samples = 45000 ; n_val_samples = 5000  =>  Computation Time 221.49s, Ending Validation loss = 0.77, 72.29% accuracy on test images*  
 
 
 We can see that reducing the size of the training set increases the ending validation loss. This is quite normal because our network trains less and so it will be harder for him to generalize to unknown data set. So our validation loss curve is more likely to diverge quickly. However for the performances we see that after 40000 (for the training set) there is not a huge difference so we will keep our initial 40000 training set / 10000 validation set configuration.
@@ -118,32 +111,25 @@ We can see that reducing the size of the training set increases the ending valid
 
 Then after having seen the influence of almost all-important parameters I tried to find the most performing configuration. To do so I came back to a pooling layer that concentrate informations:
 
-self.pool = nn.MaxPool2d(kernel_size=2, stride=2, padding=0). 
+`self.pool = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)`   
 
 And I used convolutions that create more channels (up to 750 for my best performance). 
 For every test I adapted the number of epochs in order to limit the overfitting phenomenon. 
 
-I had been progressing slowly from 72% of accuracy on the test images to 74% and finally I reached my best configuration that you can find on my notebook. 
-
+I had been progressing slowly from 72% of accuracy on the test images to 74% and finally I reached my best configuration that you can find on my notebook.   
 I will sum up here the results:
 
-Accuracy of the network on the 40000 train images: 91.00 %
+*Accuracy of the network on the 40000 train images: 91.00 %*  
+*Accuracy of the network on the 10000 validation images: 76.37 %*  
+*Accuracy of the network on the 10000 test images: **75.86%** *  
+*Ending Validation loss = 0.77*  
+*Computation time : 270.13s*  
 
-Accuracy of the network on the 10000 validation images: 76.37 %
+We could improve these performances with several points. 
 
-Accuracy of the network on the 10000 test images: **75.86%** 
-
-Ending Validation loss = 0.77
-
-Computation time : 270.13s
-
-We could improve these performances with several things. 
-
-First modifying the first convolution layer to add even more channels for example, but I didn’t know if we had the right to do it. 
-
-Then we could also use different pooling methods (Average pooling for example). 
-
-Finally, there are so many configurations to test that we could spend even more time to see  which one is better.
+First modifying the first convolution layer to add even more channels for example, but I didn’t know if we had the right to do it.   
+Then we could also use different pooling methods (Average pooling for example).   
+Finally, there are so many configurations to test that we could spend even more time to see  which one is better.  
 
 # CONCLUSION 
 
